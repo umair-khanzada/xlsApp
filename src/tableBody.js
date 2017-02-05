@@ -16,17 +16,56 @@ export class TableBody extends Component {
         this.state ={
             tableData: this.props.tableData,
             sortBy: -1,
-            editableTD: null //can be object that contain rowIndex, cellIndex.
+            editableTD: null //can be object that contain rowIndex, cellIndex, cellText.
         };
 
+        //binding this reference.
         this.sort = this.sort.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    //life cycle hooks.
+    componentWillReceiveProps(newProps){
+        this.setState({
+            tableData: newProps.tableData
+        })
     }
 
     generateTd(arr, parentIndex) {
-        return arr.map( (data, i) =>  <td key={i} onDoubleClick={this.showEditor.bind(this, parentIndex)}> {data} </td>);
-    };
+        return arr.map( (data, i) =>  <td key={i} onDoubleClick={this.showEditor.bind(this, parentIndex)}>{this.editData(data, i, parentIndex)}</td>);
+    }
 
-    sort(index){
+    handleChange(e) {
+        let editableTD = this.state.editableTD;
+        editableTD.text = e.target.value;
+
+        this.setState({
+            editableTD
+        })
+    }
+
+    handleSubmit(index, parentIndex, e) {
+        e.preventDefault();
+
+        this.props.updateRecord(this.state.editableTD.text, index, parentIndex);
+        this.setState({
+            editableTD: null
+        })
+    }
+
+    editData(data, index, parentIndex) {
+        let edit = this.state.editableTD;
+        if (edit && edit.row === parentIndex && edit.cell === index) {
+            return (
+                <form onSubmit={this.handleSubmit.bind(this, index, parentIndex)}>
+                    <input type="text" value={this.state.editableTD.text} onChange={this.handleChange} required={true} />
+                </form>
+            )
+        }
+        return data
+    }
+
+    sort(index) {
         let tableData = this.state.tableData;
         tableData.sort((a, b) => a[index] > b[index] ? 1 : -1);
         this.setState({
@@ -39,9 +78,11 @@ export class TableBody extends Component {
         this.setState({
             editableTD: {
                 row: parentIndex,
-                cell: e.target.cellIndex
+                cell: e.target.cellIndex,
+                text: this.state.tableData[parentIndex][e.target.cellIndex]
             }
         });
+
     }
 
     render() {
@@ -70,4 +111,5 @@ export class TableBody extends Component {
 
 TableBody.propTypes = {
     tableData : React.PropTypes.array.isRequired,
+    updateRecord : React.PropTypes.func.isRequired
 };
