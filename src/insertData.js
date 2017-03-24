@@ -50,14 +50,24 @@ export class InsertData extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} name="book" value={this.state.newBook.book} required={true} />
-                    <input type="text" onChange={this.handleChange} name="author" value={this.state.newBook.author} required={true} />
-                    <input type="text" onChange={this.handleChange} name="language" value={this.state.newBook.language} required={true} />
-                    <input type="text" onChange={this.handleChange} name="publish" value={this.state.newBook.publish} required={true} />
-                    <input type="text" onChange={this.handleChange} name="sale" value={this.state.newBook.sale} required={true} />
-                    <button type="submit">Add</button>
+            <div className="insert-form-parent">
+                <form className="form-inline" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <input placeholder="Book" type="text" className="form-control" onChange={this.handleChange} name="book" value={this.state.newBook.book} required={true} />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Author" type="text" className="form-control" onChange={this.handleChange} name="author" value={this.state.newBook.author} required={true} />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Language" type="text" className="form-control" onChange={this.handleChange} name="language" value={this.state.newBook.language} required={true} />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Published" type="text" className="form-control" onChange={this.handleChange} name="publish" value={this.state.newBook.publish} required={true} />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Sales" type="text" className="form-control" onChange={this.handleChange} name="sale" value={this.state.newBook.sale} required={true} />
+                    </div>
+                    <button className="btn btn-success mar" type="submit">Add</button>
                 </form>
             </div>
         );

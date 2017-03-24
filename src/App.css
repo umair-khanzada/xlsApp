@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: auto;
   padding: 20px;
   color: white;
 }
@@ -23,33 +23,12 @@
   to { transform: rotate(360deg); }
 }
 
-table{
-  width: 100%;
+div.form-group, button.mar{
+  margin: 0 5px;
 }
-
-tr{
-  background: #ccc;
+.insert-form-parent{
+  margin: 50px 0;
 }
-
-th{
-  cursor: pointer;
-}
-
-th, td{
-  padding: 10px 0;
-}
-
-th i {
+.fa-sort-asc{
   float: right;
-  padding: 0 10px;
-}
-
-input, button{
-  padding: 5px 10px;
-  margin: 5px;
-  border: 1px solid #000;
-  border-radius: 5px;
-}
-h2{
-  margin-bottom: 0;
 }

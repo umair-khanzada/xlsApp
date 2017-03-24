@@ -89,7 +89,7 @@ export class TableBody extends Component {
         return (
             <div className="App">
                 <div>
-                    <table>
+                    <table className="table table-bordered table-hover">
                         <TableHeader tableHeading={["Book", "Author", "Language", "Published", "Sales"]} sortMethod={this.sort} sortBy={this.state.sortBy}/>
                         <tbody>
                         {

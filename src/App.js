@@ -86,9 +86,11 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React xls App</h2>
-          <div>
-            <span>Search:</span><input type="text" vlaue={this.state.query} onChange={this.searchHandler} />
-          </div>
+            <form className="form-inline">
+                <div className="form-group">
+                    <input placeholder="Search" type="text" className="form-control" id="search" vlaue={this.state.query} onChange={this.searchHandler} />
+                </div>
+            </form>
         </div>
         <InsertData add={this.addData}/>
         <TableBody tableData={this.state.tableData} updateRecord={this.updateData} />

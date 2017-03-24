@@ -35,11 +35,11 @@ export class TableHeader extends Component {
 
     render() {
         return (
-        <thead>
+        <thead className="thead-default">
             <tr>
                 {
                     this.props.tableHeading.map( (obj, index) =>
-                        <th key={index} onClick={this.sorting.bind(this, index)}>
+                        <th className="text-center" key={index} onClick={this.sorting.bind(this, index)}>
                             { obj }
                             {this.headerIcon(index)}
                         </th>
